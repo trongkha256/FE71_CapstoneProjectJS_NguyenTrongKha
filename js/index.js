@@ -68,12 +68,8 @@ const renderCarts = (data) => {
     <h1>Tổng tiền: ${sum}</h1>
     <button class="btn btn-success class="text-end" onclick="handlePay()">Thanh toán</button>
     `
+
     document.getElementById('cart').innerHTML = dataHTML;
-    for (var i = 0; i < data.length; i++) {
-        if (data[i].quantity === 1) {
-            document.getElementById('btnDecrease').disabled = true
-        }
-    }
 
 }
 const logic = (product) => {
@@ -99,7 +95,7 @@ const mapProduct = (data) => {
     });
     return results;
 }
-
+//Search with samsung or iphone
 const handleSearch = () => {
     const type = document.getElementById("type").value;
 
@@ -111,6 +107,8 @@ const handleSearch = () => {
     })
     renderProducts(temp)
 }
+
+//Add a product into Cart
 const addToCarts = (productId) => {
     const a = [...productList]
     const index = carts.findIndex(
@@ -125,20 +123,27 @@ const addToCarts = (productId) => {
     }
     else carts[index].quantity += 1
 
-    console.log(carts)
+
     renderCarts(carts)
+    saveData()
 }
 const handlePay = () => {
     carts = [];
+
     renderCarts(carts)
+    saveData()
 }
 const handleQuantity = (productId, typical) => {
 
     carts.forEach((item) => {
-        if (productId == item.id && typical === -1) {
+
+        if (productId == item.id && typical === -1 && parseInt(item.quantity) > 1) {
             item.quantity -= 1
         }
         else {
+            if (productId == item.id && typical === -1 && parseInt(item.quantity) === 1) {
+                handleDeleteCart(item.id);
+            }
             if (productId == item.id && typical === 1) {
                 item.quantity += 1
             }
@@ -151,6 +156,44 @@ const handleDeleteCart = (productId) => {
         return item.id != productId
     })
     carts = temp;
+
     renderCarts(carts)
+    saveData()
+}
+
+// Save local storage:
+const saveData = function () {
+    var cartListJson = JSON.stringify(carts)
+    localStorage.setItem("list", cartListJson);
+}
+const getData = function () {
+    //Local storage: 
+
+    var cartListJson = localStorage.getItem("list");
+    if (cartListJson) {
+        carts = mapData(JSON.parse(cartListJson));
+        renderCarts(carts)
+    }
+}
+var mapData = function (dataFromLocal) {
+    var data = [];
+    for (var i = 0; i < dataFromLocal.length; i++) {
+        var currentProduct = dataFromLocal[i];
+        var mappedProduct = new ProductList(
+            currentProduct.name,
+            currentProduct.price,
+            currentProduct.screen,
+            currentProduct.backCamera,
+            currentProduct.frontCamera,
+            currentProduct.img,
+            currentProduct.type,
+            currentProduct.id,
+            currentProduct.quantity,
+            currentProduct.desc,
+        )
+        data.push(mappedProduct);
+    }
+    return data;
 }
 fetchProduct();
+getData()
