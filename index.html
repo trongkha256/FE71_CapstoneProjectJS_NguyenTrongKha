@@ -29,9 +29,90 @@
             </div>
         </div>
         <div class="row" id="porfolio">
-
         </div>
+        <h3 class="display-4 text-center">Quản Lý Sản Phẩm</h3>
+        <form id="formQLSP">
+            <div class="row">
+                <div class="col-6 form-group">
+                    <label for="">Mã Sản Phẩm : </label>
+                    <input type="text" class="form-control" id="txtMaSP" />
+                    <span id="spanMaSP" class="text-danger"></span>
+                </div>
+                <div class="col-6 form-group">
+                    <label for="">Tên Sản Phẩm : </label>
+                    <input type="text" class="form-control" id="txtTenSP" />
+                    <span id="spanTenSP" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 form-group">
+                    <label for="">Back Camera : </label>
+                    <input type="text" class="form-control" id="txtBack" />
+                    <span id="spaBackSP" class="text-danger"></span>
+                </div>
+                <div class="col-6 form-group">
+                    <label for="">Front Camera : </label>
+                    <input type="text" class="form-control" id="txtFront" />
+                    <span id="spanFrontSP" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 form-group">
+                    <label for="">Image : </label>
+                    <input type="text" class="form-control" id="txtImage" />
+                    <span id="spanImageSP" class="text-danger"></span>
+                </div>
+                <div class="col-6 form-group">
+                    <label for="">Loại: </label>
+                    <select name="" id="khSP" class="form-control">
+                        <option value="0">Chọn Loại</option>
+                        <option value="Iphone">Iphone</option>
+                        <option value="Samsung">Samsung</option>
+                    </select>
+                    <span id="spanType" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 form-group">
+                    <label for="">Giá : </label>
+                    <input type="text" class="form-control" id="txtPrice" />
+                    <span id="spanPrice" class="text-danger"></span>
+                </div>
+                <div class="col-3 form-group">
+                    <label for="">Mô Tả : </label>
+                    <input type="text" class="form-control" id="txtDesc" />
+                    <span id="spanDesc" class="text-danger"></span>
+                </div>
+                <div class="col-3 form-group">
+                    <label for="">Số Lượng : </label>
+                    <input type="text" class="form-control" id="txtQuantity" />
+                    <span id="spanQuantity" class="text-danger"></span>
+                </div>
+                <div class="col-3 form-group">
+                    <label for="">Thông tin Màn Hình : </label>
+                    <input type="text" class="form-control" id="txtScreen" />
+                    <span id="spanScreen" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group text-center mb-4 mt-3">
+                <div id="btnCreate">
+                    <button type="button" onClick="createProduct()" class="btn btn-success">
+                        Thêm Sản Phẩm
+                    </button>
+
+                    <button type="reset" id="btnReset" class="btn btn-dark">
+                        Reset
+                    </button>
+                </div>
+                <button id="btnUpdate" style="display: none" type="button" onclick="updateProduct()"
+                    class="btn btn-info ">
+                    Lưu thay đổi
+                </button>
+            </div>
+        </form>
         <div class="mx-auto">
+            <h1 class="text-center" id="cart-shop">GIỎ HÀNG</h1>
             <table class="table">
                 <thead>
                     <tr>
@@ -69,6 +150,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./js/productList.js"></script>
     <script src="./js/index.js"></script>
+    <script src="./js/product_CRUD.js"></script>
 </body>
 
 </html>

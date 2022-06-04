@@ -21,13 +21,18 @@ const renderProducts = function (data) {
     for (var i = 0; i < data.length; i++) {
         dataHTML += `
             <div class="col-3 text-center">
-                <div class="img bg-secondary">
-                    <img src=${data[i].img} width="100%" height="200px">
+                <div class="img">
+                    <img src=${data[i].img} width="180px" height="170px">
                 </div>
                 <div class="text">
                     <p style="font-size: 12px">${data[i].desc}</p>
                 </div>
-                <button class="btn btn-success text-center w-100 d-flex align-items-end" onclick="addToCarts(${data[i].id})">Cart</button>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <button type="button" class="btn btn-danger" onclick="deleteProduct(${data[i].id})">Xóa</button>
+                    <a type="button" href="#cart-shop"><button class="btn btn-success mx-3" onclick="addToCarts(${data[i].id})" >Cart</button></a>
+                    <a href="#formQLSP"><button type="button" class="btn btn-danger" onclick="getProduct(${data[i].id})">Sửa</button></a>
+                </div>
+                
             </div>
  
     `
